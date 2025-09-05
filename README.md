@@ -12,21 +12,42 @@ We're excited to see your skills in action! This challenge is designed to showca
 
 ## 🚀 The Challenge
 
-At sherpa°, we help travelers find and purchase the visas they need. Your mission is to build a **Products Application** with both client and server components that allows users to perform `at least one` of the following tasks:
+At sherpa°, we help travelers find and purchase the visas they need. Your mission is to build a **API for visa products** that's production-ready and showcases your expertise.
 
+**Core Requirements:**
 - Browse all visa products (with pagination and filtering)
 - View individual product details
 - Edit product information
 - Create new products
 
-**Important:** We don't expect you to complete all features in the 3-hour timeframe! 
+**Your Approach:** Build this however you think best demonstrates your skills. You might focus heavily on creating a robust, scalable API with comprehensive testing and documentation. Or you might build an exceptional user interface with advanced interactions and state management. You could also strike a balance between both frontend and backend. The choice is yours.
 
-Choose your focus and tell us:
-- Build a robust, well-structured API
-- Create an intuitive, responsive UI
-- Strike a balance between both
+**What We're Looking For:** Production-quality code that shows your expertise, whether that's in API design, user experience, system architecture, testing strategies, or performance optimization. Focus on what you do best and make it great.
 
-The only requirement is that your client and server components successfully integrate with each other.
+## 💱 Advanced Feature: Currency Conversion (Enhancement)
+
+**For Senior Engineers:** If you want to showcase advanced concepts like third-party API integration, caching strategies, and error handling, implement real-time currency conversion for visa prices.
+
+### Requirements
+- **Currency Support**: Design API endpoints to handle multiple currencies
+- **Real-time Conversion**: Integrate with external exchange rate services
+- **Performance**: Consider how to handle repeated requests efficiently
+- **Reliability**: Plan for when external services are unavailable
+- **User Experience**: Handle invalid inputs gracefully
+
+### Recommended APIs
+**Use one of these (credentials can be created easily):**
+- **ExchangeRate-API** (exchangerate-api.com) - Simple, reliable
+- **Fixer.io** - Professional grade with good documentation
+- **CurrencyAPI** (currencyapi.com) - Modern REST API with good rate limits
+
+### Consider
+- How will you structure your API to support currency conversion?
+- What happens when exchange rate APIs are slow or down?
+- How can you minimize external API calls while keeping rates current?
+- What's the best user experience for invalid currency requests?
+
+**This feature demonstrates:** API integration, caching patterns, error handling, performance optimization, and production-ready thinking.
 
 ## 🚦 Getting Started
 
@@ -165,34 +186,28 @@ Vietnam,Tourist,25,30,Single,5
 Vietnam,Business,50,180,Multiple,12
 Vietnam,Student,150,730,Multiple,20
 ```
+## ✅ What We're Evaluating
 
-## ✅ Assessment Criteria
+We're more interested in your approach and decision-making than feature completeness. Show us your expertise in the areas you care most about:
 
-Rather than looking for a complete implementation, we're evaluating your approach across these key areas and don't expect you to excell in every single one but rather focus on very few that you want to impress us with:
+**Code Quality & Architecture:** Clean, maintainable code with thoughtful structure. Whether that's elegant API design, component architecture, testing strategies, or performance optimizations.
 
-### Code Quality
-- **Testing:** Strategic test implementation that builds confidence
-- **TypeScript Usage:** Effective type definitions and interfaces
-- **Code Organization:** Logical component/file structure for maintainability
-- **Readability:** Clear naming conventions and function structure
+**Production Readiness:** Code that feels ready for real users. This might include proper error handling, input validation, documentation, logging, or user experience considerations.
 
-### Architecture & Design
-- **Developer Experience:** Documentation that enables other developers to work with your code
-- **Tool Selection:** Thoughtful choices with clear rationale
-- **Scalability:** Considerations for handling growth (users, products, queries)
+**Technical Depth:** Deep implementation in your chosen focus areas rather than surface-level coverage of everything. We'd rather see excellent API design with comprehensive testing than basic implementations across all features.
 
-### Professional Practice
-- **Logging:** Implementation for monitoring and debugging
-- **Documentation:** Clear API documentation
-- **Error Handling:** Graceful handling of expected and unexpected errors
+**Communication:** Clear documentation of your approach, trade-offs, and decisions. Help us understand your thinking and what you'd improve with more time.
 
 ### Out of Scope
-Don't worry about implementing:
-- Authentication
-- CI/CD pipelines
-- Deployment configurations
-- Extensive wireframes/prototypes
+Don't worry about: Authentication, CI/CD pipelines, deployment configurations, or extensive wireframes.
 
-> **A note on AI:** Feel free to use AI tools if helpful, we do too! Just be prepared to discuss what worked, what didn't, and your thoughts on AI's role in development.
+### Submission Requirements
+Include a brief document explaining:
+- Your focus areas and why you chose them
+- Key architectural decisions and trade-offs
+- How you'd scale this with more users/data
+- What you'd improve given more time
+
+> **A note on AI:** Feel free to use AI tools if helpful—we do too! Just be prepared to discuss your experience with them.
 
 We're excited to see your approach and discuss your solution. Good luck!
