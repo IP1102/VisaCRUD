@@ -6,6 +6,8 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
+import { ProductSeeder } from './database/seeds/product.seeder';
+import { dataSource } from './database/data-source';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +18,17 @@ async function bootstrap() {
   Logger.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
   );
-}
 
+  try {
+    if (!dataSource.isInitialized) {
+      await dataSource.initialize();
+    }
+    
+    const seeder = new ProductSeeder();
+    await seeder.run(dataSource);
+    Logger.log('Database seeding completed successfully');
+  } catch (error) {
+    Logger.error('Error running database seeder:', error);
+  }
+}
 bootstrap();
