@@ -3,6 +3,8 @@ import { Product } from './entity/product';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindProductsDto } from './dto/find-products.dto';
+import { plainToInstance } from 'class-transformer';
+import { ProductDto } from './dto/product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -35,27 +37,27 @@ export class ProductsService {
 
         if (minPrice !== undefined) {
             queryBuilder.andWhere('products.price >= :minPrice', { minPrice });
-          }
+        }
         
-          if (maxPrice !== undefined) {
-            queryBuilder.andWhere('products.price <= :maxPrice', { maxPrice });
-          }
-        
-          if (minLengthOfStay !== undefined) {
-            queryBuilder.andWhere('products.lengthOfStay >= :minLengthOfStay', { minLengthOfStay });
-          }
-        
-          if (maxLengthOfStay !== undefined) {
-            queryBuilder.andWhere('products.lengthOfStay <= :maxLengthOfStay', { maxLengthOfStay });
-          }
-        
-          if (minFilingFee !== undefined) {
-            queryBuilder.andWhere('products.filingFee >= :minFilingFee', { minFilingFee });
-          }
-        
-          if (maxFilingFee !== undefined) {
-            queryBuilder.andWhere('products.filingFee <= :maxFilingFee', { maxFilingFee });
-          }
+        if (maxPrice !== undefined) {
+        queryBuilder.andWhere('products.price <= :maxPrice', { maxPrice });
+        }
+    
+        if (minLengthOfStay !== undefined) {
+        queryBuilder.andWhere('products.lengthOfStay >= :minLengthOfStay', { minLengthOfStay });
+        }
+    
+        if (maxLengthOfStay !== undefined) {
+        queryBuilder.andWhere('products.lengthOfStay <= :maxLengthOfStay', { maxLengthOfStay });
+        }
+    
+        if (minFilingFee !== undefined) {
+        queryBuilder.andWhere('products.filingFee >= :minFilingFee', { minFilingFee });
+        }
+    
+        if (maxFilingFee !== undefined) {
+        queryBuilder.andWhere('products.filingFee <= :maxFilingFee', { maxFilingFee });
+        }
         
         const total = await queryBuilder.getCount();
         
@@ -74,11 +76,28 @@ export class ProductsService {
     }
 
     async getProduct(id: string) {
-        return this.productRepository.findOne({ where: { id } });
+        try{
+            const product = await this.productRepository.findOne({ where: { id } });
+            return product? plainToInstance(ProductDto, product, {excludeExtraneousValues: true}) : null
+        } catch {
+            return null
+        }
+    }
+
+
+    async createProduct(createData: Omit<Product, 'id'>) {
+        try{
+            const product = this.productRepository.create(createData);
+            const saved = await this.productRepository.save(product);
+        
+            return plainToInstance(ProductDto, saved, { excludeExtraneousValues: true });
+
+        } catch {
+            return null
+        }
     }
 
     async updateProduct(id: string, updateData: Partial<Product>) {
-        console.log(updateData)
         await this.productRepository.update(id, updateData);
         return this.productRepository.findOne({ where: { id } });
     }
