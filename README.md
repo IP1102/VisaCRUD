@@ -5,13 +5,13 @@
 - Copy `.env.example` to `.env` and update the missing information
 - Start the `server` with the following command: `npx nx run server:serve`
 - Seed the database if not done. To seed it run: `npx nx run server:seed`
-- Now you can try out the APIs present in the postman collection
+- Now you can try out the APIs present in the [postman collection](https://github.com/user-attachments/files/23554973/SherpaChallenge.postman_collection.json)
 - To run the unit tests run: `npx nx run server:test`
 
 #### Assumptions
 
-- I copied the data `csv` file to `assets/` folder and renamed the column names to match DTO.
-- A locally running `PostgreSQL` database.
+- I copied the data `csv` file to `assets/` folder and renamed the column names to match the defined DTOs.
+- Have a locally running `PostgreSQL` database.
 - Created a seed script to populate the database.
 - Added `seed` target in `project.json` in `server`.
 
@@ -111,7 +111,7 @@ sequenceDiagram
     - I wrote custom error handlers for service layers in both modules.
     - AN intersting thing I learned is the global filter. We can map custom errors to specific HTTP responses.
 
-## Some thoughts on scaling thiis project
+## Some thoughts on scaling this project
 
 ### Database
 - Data Mapper with custom repositories. This scales better than ActiveRecord because `ActiveRecord` becomes hard to maintain.
