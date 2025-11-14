@@ -67,7 +67,7 @@ sequenceDiagram
 
 ## Demo
 
-https://github.com/user-attachments/assets/789c7e57-e2b1-49a4-9f1c-0de0fbbf7c86
+https://github.com/user-attachments/assets/fe535479-dad6-46cf-99f6-a2a08e017109
 
 
 ## Key Decision and Takeaways
