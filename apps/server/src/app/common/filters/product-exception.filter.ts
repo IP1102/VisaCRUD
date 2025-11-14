@@ -1,7 +1,8 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpStatus } from '@nestjs/common';
 import { ProductNotFoundError, ProductCreateError, ProductUpdateError } from '../../errors/product.error';
+import { ConvertCurrencyError } from '../../errors/currency-exchange.error';
 
-@Catch(ProductNotFoundError, ProductCreateError, ProductUpdateError)
+@Catch(ProductNotFoundError, ProductCreateError, ProductUpdateError, ConvertCurrencyError)
 export class ProductExceptionFilter implements ExceptionFilter {
   catch(exception: Error, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
