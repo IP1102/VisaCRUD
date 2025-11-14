@@ -76,4 +76,10 @@ export class ProductsService {
     async getProduct(id: string) {
         return this.productRepository.findOne({ where: { id } });
     }
+
+    async updateProduct(id: string, updateData: Partial<Product>) {
+        console.log(updateData)
+        await this.productRepository.update(id, updateData);
+        return this.productRepository.findOne({ where: { id } });
+    }
 }
