@@ -111,7 +111,7 @@ sequenceDiagram
     - I wrote custom error handlers for service layers in both modules.
     - AN intersting thing I learned is the global filter. We can map custom errors to specific HTTP responses.
 
-## Some thoughts on scaling thiis project
+## Some thoughts on scaling this project
 
 ### Database
 - Data Mapper with custom repositories. This scales better than ActiveRecord because `ActiveRecord` becomes hard to maintain.
