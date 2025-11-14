@@ -5,13 +5,13 @@
 - Copy `.env.example` to `.env` and update the missing information
 - Start the `server` with the following command: `npx nx run server:serve`
 - Seed the database if not done. To seed it run: `npx nx run server:seed`
-- Now you can try out the APIs present in the postman collection
+- Now you can try out the APIs present in the [postman collection](https://github.com/user-attachments/files/23554973/SherpaChallenge.postman_collection.json)
 - To run the unit tests run: `npx nx run server:test`
 
 #### Assumptions
 
-- I copied the data `csv` file to `assets/` folder and renamed the column names to match DTO.
-- A locally running `PostgreSQL` database.
+- I copied the data `csv` file to `assets/` folder and renamed the column names to match the defined DTOs.
+- Have a locally running `PostgreSQL` database.
 - Created a seed script to populate the database.
 - Added `seed` target in `project.json` in `server`.
 
