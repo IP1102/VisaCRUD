@@ -34,16 +34,18 @@
         }
       }
     },
-    "test": {
-      "options": {
-        "passWithNoTests": true
-      }
-    },
     "seed": {
       "executor": "nx:run-commands",
       "options": {
         "command": "ts-node --project apps/server/tsconfig.app.json apps/server/src/database/seeds/seed.ts",
         "cwd": "{workspaceRoot}"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/server/jest.config.ts"
       }
     }
   }
