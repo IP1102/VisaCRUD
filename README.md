@@ -65,6 +65,11 @@ sequenceDiagram
     end
 ```
 
+## Demo
+
+https://github.com/user-attachments/assets/789c7e57-e2b1-49a4-9f1c-0de0fbbf7c86
+
+
 ## Key Decision and Takeaways
 
 - I chose `TypeORM` for simplicity and extensive native support. Also `TypeORM` supports both `ActiveRecord` and `Data Mapper` patterns.
