@@ -59,7 +59,7 @@ export class CurrencyExchangeService {
                 const currentUnixTimestamp: number = Math.floor(Date.now() / 1000);
                 const ttlSeconds = Math.max(response.data.time_next_update_unix - currentUnixTimestamp, 0);
 
-                await this.cacheManager.set(cacheKey, rates, ttlSeconds);
+                await this.cacheManager.set(cacheKey, rates, ttlSeconds * 1000);
 
                 this.logger.log(`Caching exchange rates for ${fromCurrency} with TTL of ${ttlSeconds} seconds`);
             }
