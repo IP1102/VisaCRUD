@@ -4,6 +4,7 @@ import { ProductsService } from './products.service';
 import { FindProductsDto } from './dto/find-products.dto';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { v4 as uuidv4 } from 'uuid';
 
 describe('ProductsController', () => {
   let controller: ProductsController;
@@ -37,8 +38,9 @@ describe('ProductsController', () => {
   });
 
   it('createProduct should call service.createProduct', async () => {
-    const dto: CreateProductDto = { name: 'Visa' } as any;
-    const mockResult = { id: '1', name: 'Visa' };
+    const testUUID = uuidv4();
+    const dto: CreateProductDto = { country: 'Visa' } as CreateProductDto;
+    const mockResult = { id: testUUID, country: 'Visa' };
     service.createProduct.mockResolvedValue(mockResult);
 
     const result = await controller.createProduct(dto);
@@ -48,7 +50,7 @@ describe('ProductsController', () => {
   });
 
   it('getProduct should call service.getProduct', async () => {
-    const mockResult = { id: 'uuid', name: 'Visa' };
+    const mockResult = { id: 'uuid', country: 'Visa' };
     service.getProduct.mockResolvedValue(mockResult);
 
     const result = await controller.getProduct('uuid');
@@ -58,8 +60,8 @@ describe('ProductsController', () => {
   });
 
   it('updateProduct should call service.updateProduct', async () => {
-    const dto: UpdateProductDto = { name: 'Updated' } as any;
-    const mockResult = { id: 'uuid', name: 'Updated' };
+    const dto: UpdateProductDto = { country: 'Updated' } as any;
+    const mockResult = { id: 'uuid', country: 'Updated' };
     service.updateProduct.mockResolvedValue(mockResult);
 
     const result = await controller.updateProduct('uuid', dto);

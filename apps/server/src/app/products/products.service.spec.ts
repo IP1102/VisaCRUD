@@ -7,6 +7,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { plainToInstance } from 'class-transformer';
 import { ProductDto } from './dto/product.dto';
 import { ProductCreateError, ProductUpdateError } from '../errors/product.error';
+import { v4 as uuidv4 } from 'uuid';
 
 describe('ProductsService', () => {
   let service: ProductsService;
@@ -118,12 +119,13 @@ describe('ProductsService', () => {
 
   describe('createProduct', () => {
     it('should create and return a DTO', async () => {
-      const mockProduct = { name: 'Visa', id: '10' } as any;
+      const testUUID = uuidv4();
+      const mockProduct = { country: 'Mexico', id: testUUID } as Product;
 
       repo.create.mockReturnValue(mockProduct);
       repo.save.mockResolvedValue(mockProduct);
 
-      const result = await service.createProduct({ name: 'Visa' } as any);
+      const result = await service.createProduct({ country: 'Mexico' } as any);
 
       expect(repo.create).toHaveBeenCalled();
       expect(repo.save).toHaveBeenCalledWith(mockProduct);
@@ -136,7 +138,7 @@ describe('ProductsService', () => {
       repo.save.mockRejectedValue(new Error('Save failed'));
 
       await expect(
-        service.createProduct({ name: 'Visa' } as any)
+        service.createProduct({ country: 'Mexico' } as any)
       ).rejects.toThrow(ProductCreateError);
 
       expect(logger.error).toHaveBeenCalled();
@@ -145,20 +147,22 @@ describe('ProductsService', () => {
 
   describe('updateProduct', () => {
     it('should update and return updated product', async () => {
+      const testUUID = uuidv4();
+
       repo.update.mockResolvedValue({} as any);
-      repo.findOne.mockResolvedValue({ id: '1', country: 'RUS' } as any);
+      repo.findOne.mockResolvedValue({ id: testUUID, country: 'RUS' } as any);
 
-      const result = await service.updateProduct('1', { country: 'RUS' });
+      const result = await service.updateProduct(testUUID, { country: 'RUS' });
 
-      expect(repo.update).toHaveBeenCalledWith('1', { country: 'RUS' });
-      expect(result).toEqual({ id: '1', country: 'RUS' });
+      expect(repo.update).toHaveBeenCalledWith(testUUID, { country: 'RUS' });
+      expect(result).toEqual({ id: testUUID, country: 'RUS' });
     });
 
     it('should throw ProductUpdateError on exception', async () => {
       repo.update.mockRejectedValue(new Error('Update failed'));
 
       await expect(
-        service.updateProduct('1', { country: 'ITA' })
+        service.updateProduct('a1b2c3d4-e5f6-7890-1234-567890abcdef', { country: 'ITA' })
       ).rejects.toThrow(ProductUpdateError);
 
       expect(logger.error).toHaveBeenCalled();

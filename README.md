@@ -1,5 +1,6 @@
 ## Setup
 
+- Install everything by running `yarn` from project root.
 - Start a locally running `PostgreSQL` database
 - Create a database with name `joinsherpa`
 - Copy `.env.example` to `.env` and update the missing information
