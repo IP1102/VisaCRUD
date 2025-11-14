@@ -9,6 +9,7 @@ import { AppModule } from './app/app.module';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import { join } from 'path';
+import { ProductExceptionFilter } from './app/common/filters/product-exception.filter';
 
 
 async function bootstrap() {
@@ -34,6 +35,8 @@ async function bootstrap() {
   });
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+  app.useGlobalFilters(new ProductExceptionFilter());
+
   const port = process.env.PORT || 3000;
   await app.listen(port);
   Logger.log(

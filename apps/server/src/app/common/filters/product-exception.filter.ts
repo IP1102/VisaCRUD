@@ -1,5 +1,5 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpStatus } from '@nestjs/common';
-import { ProductNotFoundError, ProductCreateError, ProductUpdateError } from '../../app/errors/product.error';
+import { ProductNotFoundError, ProductCreateError, ProductUpdateError } from '../../errors/product.error';
 
 @Catch(ProductNotFoundError, ProductCreateError, ProductUpdateError)
 export class ProductExceptionFilter implements ExceptionFilter {
