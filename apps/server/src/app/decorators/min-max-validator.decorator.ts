@@ -31,7 +31,24 @@ export class IsMinMaxValidator implements ValidatorConstraintInterface {
 
   defaultMessage(args: ValidationArguments): string {
     const [relatedPropertyName] = args.constraints;
-    return `${args.property} must be less than or equal to ${relatedPropertyName}`;
+
+    const isMinField =
+      args.property.toLowerCase().includes('min') &&
+      relatedPropertyName.toLowerCase().includes('max');
+
+    const isMaxField =
+      args.property.toLowerCase().includes('max') &&
+      relatedPropertyName.toLowerCase().includes('min');
+
+    if (isMinField) {
+      return `${args.property} must be less than or equal to ${relatedPropertyName}`;
+    }
+
+    if (isMaxField) {
+      return `${args.property} must be greater than or equal to ${relatedPropertyName}`;
+    }
+
+    return `Invalid min/max relation between ${args.property} and ${relatedPropertyName}`;
   }
 }
 
